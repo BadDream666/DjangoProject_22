@@ -3,7 +3,6 @@ from django.core.management import call_command
 
 from catalog.models import Category, Product
 
-
 class Command(BaseCommand):
     help = 'Add product to the database'
 
@@ -14,14 +13,15 @@ class Command(BaseCommand):
         call_command('loaddata', 'category.json')
         call_command('loaddata', 'product.json')
 
-        category, _ = Category.objects.get_or_create(name='Замороженные продукты',
-                                                     description='Замороженные продукты для человеков и инопланетян')
+
+
+
+
+        category, _ = Category.objects.get_or_create(name='Замороженные продукты', description='Замороженные продукты для человеков и инопланетян')
 
         products = [
-            {'name': 'Пельмени', 'description': 'Вкусные пельмени для человеков', 'category': category,
-             'purchase_price': '100', 'created_at': '2024-10-11', 'updated_at': '2024-10-11'},
-            {'name': 'Кошки', 'description': 'Вкусные замороженные кошки для Альфа', 'category': category,
-             'purchase_price': '100', 'created_at': '2024-10-11', 'updated_at': '2024-10-11'}
+            {'name': 'Пельмени', 'description': 'Вкусные пельмени для человеков', 'category': category, 'purchase_price': '100', 'created_at': '2024-10-11', 'updated_at': '2024-10-11'},
+            {'name': 'Кошки', 'description': 'Вкусные замороженные кошки для Альфа', 'category': category, 'purchase_price': '100', 'created_at': '2024-10-11', 'updated_at': '2024-10-11'}
         ]
 
         for product_data in products:
