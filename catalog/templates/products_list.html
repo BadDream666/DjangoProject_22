@@ -6,10 +6,10 @@
         {% for product in products %}
         <div class="col">
           <div class="card shadow-sm">
-            <img src="{{ product.photo | media_filter }}">
+            <img src="{{ product.photo|media_filter }}" class="card-img-top" alt="{{ product.name }}">
             <div class="card-body">
               <p class="card-text"> Товар: {{product.name}}</p>
-              <p class="card-text"> Описание товара: {{product.description}}</p>
+              <p class="card-text"> Описание товара: {{ product.description|truncatechars:100 }}</p>
               <p class="card-text"> Категория товара: {{product.category}}</p>
               <p class="card-text"> Цена: {{product.purchase_price}}</p>
               <p class="card-text"> Дата создания: {{product.created_at}}</p>
