@@ -14,4 +14,4 @@ def contacts(request):
 
 def product_details(request, pk):
     product = get_object_or_404(Product, pk=pk)  # Получаем товар по ID
-    return render(request, "catalog/product_detail.html", {"product": product})
+    return render(request, "product_detail.html", {"product": product})
