@@ -1,16 +1,6 @@
 from django.db import models
 
 
-# import os
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-# import django
-#
-# from django.conf import settings
-#
-# if not settings.configured:
-#     django.setup()
-
-
 class Category(models.Model):
     name = models.CharField(
         max_length=100,
@@ -58,6 +48,7 @@ class Product(models.Model):
         related_name="Product",
     )
     purchase_price = models.DecimalField(
+        verbose_name="Цена",
         max_digits=10,
         decimal_places=2,
     )
