@@ -1,14 +1,6 @@
 from django.db import models
 
-
-# import os
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-# import django
-#
-# from django.conf import settings
-#
-# if not settings.configured:
-#     django.setup()
+from users.models import User
 
 
 class Category(models.Model):
@@ -58,6 +50,7 @@ class Product(models.Model):
         related_name="Product",
     )
     purchase_price = models.DecimalField(
+        verbose_name="Цена",
         max_digits=10,
         decimal_places=2,
     )
@@ -73,11 +66,24 @@ class Product(models.Model):
         verbose_name="Дата последнего изменения",
         help_text="Укажите дату последнего изменения",
     )
+    publication_status = models.BooleanField(default=False, verbose_name="Опубликовано")
+    owner = models.ForeignKey(
+        User,
+        verbose_name="Пользователь",
+        help_text="Укажите пользователя продукта",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["name", "purchase_price", "created_at"]
+        permissions = [
+            ("can_unpublish_product", "Can unpublish product"),
+            ("can_delete_product", "Can delete product"),
+        ]
 
     def __str__(self):
         return self.name
